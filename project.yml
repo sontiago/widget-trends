@@ -1,9 +1,5 @@
 name: Trends
 
-# Личный Team ID живёт в project.local.yml (в .gitignore) — см. README.
-# Файл обязателен: без Team ID автоподпись не соберётся, а без Team ID
-# в подписи AppIntents не применяет настройки виджета. Понятную ошибку
-# при его отсутствии даёт `make generate`.
 include:
   - project.local.yml
 
@@ -12,7 +8,6 @@ options:
   deploymentTarget:
     macOS: "14.0"
   createIntermediateGroups: true
-  # Язык разработки — английский; русский идёт переводом в Localizable.xcstrings.
   developmentLanguage: en
 
 packages:
@@ -23,10 +18,6 @@ settings:
   base:
     SWIFT_VERSION: "5.10"
     MACOSX_DEPLOYMENT_TARGET: "14.0"
-    # Автоподпись личной командой: без Team ID (ad-hoc) linkd не строит
-    # bundleIdentity, и AppIntents-конфигурация виджета декодируется в nil.
-    # DEVELOPMENT_TEAM намеренно не задан здесь — он приходит из
-    # project.local.yml (ключ, заданный в этом файле, перекрыл бы include).
     CODE_SIGN_STYLE: Automatic
     CURRENT_PROJECT_VERSION: "1"
     MARKETING_VERSION: "1.4.0"
