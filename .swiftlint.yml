@@ -1,0 +1,19 @@
+included:
+  - App
+  - Widget
+  - TrendsKit/Sources
+  - TrendsKit/Tests
+
+disabled_rules:
+  - trailing_whitespace
+
+line_length:
+  warning: 130
+  error: 160
+
+identifier_name:
+  min_length: 2
+
+opt_in_rules:
+  - empty_count
+  - closure_spacing

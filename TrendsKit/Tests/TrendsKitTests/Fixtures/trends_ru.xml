@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:ht="https://trends.google.com/trending/rss" version="2.0">
+	<channel>
+		<title>Daily Search Trends</title>
+		<description>Recent searches</description>
+		<link>https://trends.google.com/trending/rss?geo=RU</link>
+		<atom:link href="https://trends.google.com/trending/rss?geo=RU" rel="self" type="application/rss+xml"/>
+		<item>
+			<title>погода тольятти</title>
+			<ht:approx_traffic>200+</ht:approx_traffic>
+			<description/>
+			<link>https://trends.google.com/trending/rss?geo=RU</link>
+			<pubDate>Wed, 22 Jul 2026 14:10:00 -0700</pubDate>
+			<ht:picture/>
+			<ht:picture_source/>
+		</item>
+		<item>
+			<title>роналдо</title>
+			<ht:approx_traffic>500+</ht:approx_traffic>
+			<description/>
+			<link>https://trends.google.com/trending/rss?geo=RU</link>
+			<pubDate>Wed, 22 Jul 2026 14:00:00 -0700</pubDate>
+			<ht:picture>https://encrypted-tbn1.gstatic.com/images?q=example</ht:picture>
+			<ht:picture_source>Спорт Mail</ht:picture_source>
+			<ht:news_item>
+				<ht:news_item_title>«Это было великолепно»</ht:news_item_title>
+				<ht:news_item_url>https://example.com/news</ht:news_item_url>
+				<ht:news_item_source>Спорт Mail</ht:news_item_source>
+			</ht:news_item>
+		</item>
+		<item>
+			<title>курс доллара</title>
+			<ht:approx_traffic>1,000+</ht:approx_traffic>
+			<description/>
+			<link>https://trends.google.com/trending/rss?geo=RU</link>
+			<pubDate>Wed, 22 Jul 2026 13:30:00 -0700</pubDate>
+		</item>
+	</channel>
+</rss>

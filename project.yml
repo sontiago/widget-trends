@@ -1,0 +1,100 @@
+name: Trends
+
+# Личный Team ID живёт в project.local.yml (в .gitignore) — см. README.
+# Файл обязателен: без Team ID автоподпись не соберётся, а без Team ID
+# в подписи AppIntents не применяет настройки виджета. Понятную ошибку
+# при его отсутствии даёт `make generate`.
+include:
+  - project.local.yml
+
+options:
+  bundleIdPrefix: dev.sontiago
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  # Язык разработки — английский; русский идёт переводом в Localizable.xcstrings.
+  developmentLanguage: en
+
+packages:
+  TrendsKit:
+    path: TrendsKit
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    # Автоподпись личной командой: без Team ID (ad-hoc) linkd не строит
+    # bundleIdentity, и AppIntents-конфигурация виджета декодируется в nil.
+    # DEVELOPMENT_TEAM намеренно не задан здесь — он приходит из
+    # project.local.yml (ключ, заданный в этом файле, перекрыл бы include).
+    CODE_SIGN_STYLE: Automatic
+    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "1.4.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+  configs:
+    Release:
+      ONLY_ACTIVE_ARCH: false
+      ARCHS: "arm64 x86_64"
+      CODE_SIGN_INJECT_BASE_ENTITLEMENTS: false
+
+targets:
+  Trends:
+    type: application
+    platform: macOS
+    sources: [App]
+    dependencies:
+      - package: TrendsKit
+      - target: TrendsWidgetExtension
+    entitlements:
+      path: App/Trends.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Trends
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.news
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        NSHumanReadableCopyright: "© 2026"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.sontiago.trends
+        ENABLE_HARDENED_RUNTIME: false
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+  TrendsWidgetExtension:
+    type: extensionkit-extension
+    platform: macOS
+    sources: [Widget]
+    dependencies:
+      - package: TrendsKit
+    entitlements:
+      path: Widget/TrendsWidgetExtension.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+    info:
+      path: Widget/Info.plist
+      properties:
+        CFBundleDisplayName: Trends Widget
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        EXAppExtensionAttributes:
+          EXExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.sontiago.trends.widget
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+schemes:
+  Trends:
+    build:
+      targets:
+        Trends: all
+    run:
+      config: Debug
+    archive:
+      config: Release
